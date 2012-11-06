@@ -1,0 +1,31 @@
+{
+	"name": "bt51/textile-serviceprovider",
+	"keywords": ["silex", "extension", "silex-extension", "textile"],
+	"type": "library",
+	"license": "MIT",
+	"description": "Textile service provider for silex",
+	"authors": [
+		{
+			"name": "Ben Tollakson",
+			"email": "ben.tollakson@gmail.com"
+		}
+	],
+	"version": "master",
+	"require": {
+		"php": ">=5.3.2",
+		"netcarver/textile": "dev-master"
+	},
+	"require-dev": {
+        "silex/silex": "1.0.x-dev",
+        "twig/twig": ">=1.2.0"
+    },
+    "suggest": {
+        "twig/twig": ">=1.2.0"
+    },
+	"autoload": {
+		"psr-0": {
+			"Bt51\\Silex\\Provider\\TextileServiceProvider": "src/"
+		}
+	},
+	"minimum-stability": "dev"
+}
