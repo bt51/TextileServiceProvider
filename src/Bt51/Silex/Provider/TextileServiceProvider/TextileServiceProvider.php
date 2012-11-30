@@ -30,7 +30,7 @@ class TextileServiceProvider implements ServiceProviderInterface
         });
         
         $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
-            $app['twig']->addExtension(new TextileExtension($app['textile']));
+            $twig->addExtension(new TextileExtension($app['textile']));
             return $twig;
         }));
     }   
