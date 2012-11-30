@@ -12,6 +12,7 @@
 namespace TextileServiceProvider\Tests;
 
 use Silex\Application;
+use Silex\Provider\TwigServiceProvider;
 use Bt51\Silex\Provider\TextileServiceProvider\TextileServiceProvider;
 
 class TextileServiceProviderTest extends \PHPUnit_Framework_TestCase
@@ -38,10 +39,7 @@ class TextileServiceProviderTest extends \PHPUnit_Framework_TestCase
         
         $app = new Application();
         
-        $app['twig'] = $app->share(function () {
-            $loader = new \Twig_Loader_String();
-            return new \Twig_Environment($loader);
-        });
+        $app->register(new TwigServiceProvider());
         
         $app->register(new TextileServiceProvider());
         
@@ -57,13 +55,10 @@ class TextileServiceProviderTest extends \PHPUnit_Framework_TestCase
 
         $app = new Application();
 
-        $app['twig'] = $app->share(function () {
-            $loader = new \Twig_Loader_String();
-            return new \Twig_Environment($loader);
-        });
-
-        $app->register(new TextileServiceProvider());
+        $app->register(new TwigServiceProvider());
         
+        $app->register(new TextileServiceProvider());
+
         $this->assertInstanceOf('Bt51\\Silex\\Provider\\TextileServiceProvider\\Twig\\TextileExtension',
                                 $app['twig']->getExtension('textile'));
     }
