@@ -19,7 +19,7 @@ Read more on composer here: http://getcomposer.org
 Parameters
 ----------
 
-* **textile.configuration**: An array of options to be passed to the parser's constructor
+* **textile.configuration**: Output doctype, either 'xhtml' (default) or 'html5'
 
 Services
 --------

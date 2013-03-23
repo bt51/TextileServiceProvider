@@ -11,7 +11,7 @@ $app->register(TwigServiceProvider(), array(
 ));
 
 $app->register(new TextileServiceProvider(),
-			   array('textile.configuration' => array()));
+			   array('textile.configuration' => 'html5'));
 
 $app->get('/', function () use ($app) {
     $text = 'Hello World';
