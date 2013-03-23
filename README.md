@@ -2,6 +2,8 @@ TextileServiceProvider
 ================
 
 The TextileServiceProvider provides the "netcarver/textile" library for silex.
+*Note:* The 1.0 branch tracks the 2.5.x branch of netcarver/textile. The 1.1 and
+master branches track the 3.5.x branch of netcarver/textile.
 
 Installation
 ------------
