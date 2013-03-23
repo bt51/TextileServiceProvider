@@ -13,6 +13,7 @@ namespace Bt51\Silex\Provider\TextileServiceProvider;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;
+use Netcarver\Textile\Parser;
 use Bt51\Silex\Provider\TextileServiceProvider\Twig\TextileExtension;
 
 class TextileServiceProvider implements ServiceProviderInterface
@@ -26,16 +27,20 @@ class TextileServiceProvider implements ServiceProviderInterface
         $app['textile.configuration'] = (isset($app['textile.configuration']) ? $app['textile.configuration'] : 'xhtml');
         
         $app['textile'] = $app->share(function () use ($app) {
-            return new \Textile($app['textile.configuration']);
+            return new Parser($app['textile.configuration']);
         });
         
-        $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
-            $twig->addExtension(new TextileExtension($app['textile']));
-            return $twig;
-        }));
+        $app['twig'] = $app->share($app->extend('twig',
+                function ($twig, $app) {
+                    $twig->addExtension(new TextileExtension($app['textile']));
+                    return $twig;
+                }
+            )
+        );
     }   
 
     public function boot(Application $app)
-    {   
+    {
+        
     }   
 }
