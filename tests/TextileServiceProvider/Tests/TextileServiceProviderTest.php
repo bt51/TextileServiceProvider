@@ -13,15 +13,25 @@ namespace TextileServiceProvider\Tests;
 
 use Silex\Application;
 use Silex\Provider\TwigServiceProvider;
+use Netcarver\Textile\Parser;
 use Bt51\Silex\Provider\TextileServiceProvider\TextileServiceProvider;
 
 class TextileServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        if (!class_exists('Textile')) {
+        if (!class_exists('Netcarver\Textile\Parser')) {
             $this->markTestSkipped('Textile is not installed');
         }
+    }
+    
+    public function testServiceProviderRegister()
+    {
+        $app = new Application();
+        $app->register(new TwigServiceProvider());
+        $app->register(new TextileServiceProvider());
+        
+        $this->assertInstanceOf('Netcarver\Textile\Parser', $app['textile']);
     }
     
     public function testTextile()
@@ -65,6 +75,6 @@ class TextileServiceProviderTest extends \PHPUnit_Framework_TestCase
     
     protected function getParser()
     {
-        return new \Textile();
+        return new Parser();
     }
 }
